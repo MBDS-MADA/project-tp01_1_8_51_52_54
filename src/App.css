@@ -1,0 +1,137 @@
+#root {
+  width: 100%;
+  min-height: 50vh;
+  text-align: center;
+}
+#content{
+ max-width: 700px;
+ min-height: 55vh;
+ margin: 0 auto;
+}
+#formation-logo{
+  width: 200px;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* General container */
+.details-container {
+  background-color: #F6F1F1;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.details-container h3, .details-container p,.details-container h2{
+  color: black;
+}
+
+
+.detail-item {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.detail-item span,.student-info span{
+  font-weight: bold;
+  color: #146C94;
+}
+
+.student-info {
+  padding: 10px 10px 20px 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.student-info p {
+  margin: 5px 0;
+}
+
+p {
+  font-family: 'Verdana', sans-serif;
+  font-size: 1.1em;
+}
+.nav-menu{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  padding: 10px;
+  margin: 0px 0px 40px 0px;
+  background-color: #6EACDA;
+  
+}
+.nav-menu img{
+  width: 40px;
+}
+
+.nav-item{
+  margin-right: 20px;
+  cursor: pointer;
+  background-color: transparent;
+  color: black;
+  border: none;
+  transition: transform 0.4s ease;
+}
+.nav-item:hover{
+  color: #F5EEDC;
+  transform: scale(1.1); /* L'animation de l'agrandissement */
+
+}
+.nav-item.active{
+  color: #F5EEDC;
+  text-decoration: underline;
+}
+.header-container{
+  margin: 0 auto;
+}
+.table-style{
+  height: 100px;
+}
+.form-search{
+  margin-bottom: 12px;
+  display: flex;
+  gap: 20px;
+}
+.bulletin-note td,.bulletin-note th{
+  padding: 10px;
+  border: solid 1px green;
+}

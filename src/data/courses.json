@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Math 101"
+  },
+  {
+    "id": 2,
+    "name": "Physics 505"
+  },
+  {
+    "id": 3,
+    "name": "Chemistry 606"
+  },
+  {
+    "id": 4,
+    "name": "History 303"
+  },
+  {
+    "id": 5,
+    "name": "Biology 404"
+  },
+  {
+    "id": 6,
+    "name": "English 202"
+  },
+  {
+    "id": 7,
+    "name": "CS 707"
+  }
+]
