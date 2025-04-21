@@ -98,7 +98,7 @@ function ContentMatieres() {
   };
 
   // Charger la liste des cours depuis l'API
-  useEffect(() => {
+  const init = ()=>{
     fetch("http://localhost:8010/api/courses")
       .then((res) => res.json())
       .then((data) => {
@@ -107,6 +107,9 @@ function ContentMatieres() {
         setFilteredCourses(data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).sort(getComparator(order, orderBy)))
       })
       .catch(() => showSnackbar("Erreur lors du chargement", "error"));
+  }
+  useEffect(() => {
+    init();
   }, []);
 
   // Ajouter un cours
@@ -124,14 +127,8 @@ function ContentMatieres() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newCourse.trim() }),
       });
-      const newCourseData = await response.json();
-      setCourses((prev) => [
-        ...prev,
-        { ...newCourseData, name: newCourse.trim() },
-      ]);
-      const tab=[...courses, { ...newCourseData, name: newCourse.trim() }]
-    
-      setFilteredCourses(filtres(tab).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).sort(getComparator(order, orderBy)))
+      init();
+      setSearchTerm("");
 
       setNewCourse("");
       showSnackbar("Matière ajoutée avec succès !");
