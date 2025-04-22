@@ -1,16 +1,12 @@
 import { CSVLink } from "react-csv";
 function ExportCsvNote({ title, data }) {
     const final_data=()=>{
-
          return data.map(note => {
-          
             return {
-              unique_id: note.unique_id,
-              course: note.course,
-              firstname: note.student.firstname,
-              lastname: note.student.lastname,
-              id: note.student.id,
-              date: note.date,
+              course: note.course.name,
+              firstname: note.student.firstName,
+              lastname: note.student.lastName,
+              date: new Date(note.date).toLocaleDateString(),
               grade: note.grade
             };
           
@@ -23,6 +19,7 @@ function ExportCsvNote({ title, data }) {
     <>
       {data.length >= 0 && (
         <CSVLink
+        style={{marginBottom:12}}
         filename={title}
             title={title}
           data={[Object.keys(final_data()[0])].concat(
@@ -32,6 +29,8 @@ function ExportCsvNote({ title, data }) {
          Télécharger en csv
         </CSVLink>
       )}
+      <br />
+      
     </>
   );
 }
