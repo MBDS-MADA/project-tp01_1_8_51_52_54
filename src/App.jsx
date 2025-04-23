@@ -34,7 +34,7 @@ function App() {
   return (
     <>
      <MenuOpt/>
-      {/* <Header /> */}
+      <Header />
       <div id='content'>
         <Outlet />
       </div>
