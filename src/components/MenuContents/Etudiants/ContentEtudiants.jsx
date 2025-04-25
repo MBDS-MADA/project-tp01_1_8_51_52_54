@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 
 const menuItems = ['Lister Etudiant','Crée Étudiant'];
-
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 function Menu({ activeItem, onSelect }) {
   return (
    
@@ -124,7 +124,7 @@ function ComponentAddEtudiant() {
   );
 }
 function AddEtudiant(etudiant) {
-  fetch('http://localhost:8010/api/students', {
+  fetch(`${BACKEND_URL}/students`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -162,7 +162,7 @@ function ContentEtudiantsDefault() {
   })
    
   useEffect(() => {
-    fetch('http://localhost:8010/api/students',
+    fetch(`${BACKEND_URL}/students`,
       {method : 'GET'}
     )
       .then((response) => {
@@ -192,7 +192,7 @@ function ContentEtudiantsDefault() {
   function deleteEtudiant(id) {
     console.log(id);
     
-    fetch(`http://localhost:8010/api/students/${id}`,{
+    fetch(`${BACKEND_URL}/students/${id}`,{
       method:"DELETE",
       body:JSON.stringify({id:id})
     })

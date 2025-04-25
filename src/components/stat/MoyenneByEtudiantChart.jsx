@@ -3,19 +3,19 @@ import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid,
   Tooltip, ResponsiveContainer
 } from 'recharts';
-
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 const MoyenneByEtudiantChart = () => {
   const [notes, setNotes] = useState([]);
   const [students, setStudents] = useState([]);
 
   // Charger depuis l’API
   useEffect(() => {
-    fetch("http://localhost:8010/api/grades")
+    fetch(`${BACKEND_URL}/grades`)
       .then(res => res.json())
       .then(data => setNotes(data))
       .catch(err => console.error("Erreur chargement notes :", err));
 
-    fetch("http://localhost:8010/api/students")
+    fetch(`${BACKEND_URL}/students`)
       .then(res => res.json())
       .then(data => setStudents(data))
       .catch(err => console.error("Erreur chargement étudiants :", err));

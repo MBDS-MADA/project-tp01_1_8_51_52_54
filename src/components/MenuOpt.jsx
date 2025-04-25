@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 function MenuOpt() {
     const user = JSON.parse(localStorage.getItem("user"));
     const menu_liste = [
-        { text: "Notes", path: "/app/notes", roles: ["admin","user"] },
-        { text: "Créer Note", path: "/app/notes/add", roles: ["admin"] },
-        { text: "Etudiants", path: "/app/etudiants", roles: ["admin","user"] },
-        { text: "Matières", path: "/app/matieres", roles: ["admin","user"] },
-        { text: "Statistique", path: "/app/console", roles: ["admin","user"] },
-        { text: "A propos", path: "/app/apropos", roles: ["admin","user"] },
-        { text: "Deconnexion", path: "/", roles: ["admin","user"] }
+        { text: "Notes", path: "/app/notes", roles: ["SCOLARITE","STUDENT"] },
+        { text: "Créer Note", path: "/app/notes/add", roles: ["SCOLARITE"] },
+        { text: "Etudiants", path: "/app/etudiants", roles: ["SCOLARITE"] },
+        { text: "Matières", path: "/app/matieres", roles: ["SCOLARITE"] },
+        { text: "Statistique", path: "/app/console", roles: ["SCOLARITE"] },
+        { text: "A propos", path: "/app/apropos", roles: ["SCOLARITE","STUDENT"] },
+        { text: "Deconnexion", path: "/", roles: ["SCOLARITE","STUDENT"] }
       ]
    
 

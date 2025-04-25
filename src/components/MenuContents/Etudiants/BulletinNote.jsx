@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 function BulletinNote({ etudiant }) {
+  const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
  const [notes,setNotes]=useState([])
  const [selectedYear,setSelectedYear]=useState((new Date()).getFullYear())
   const sumGrades = notes.reduce((acc, current) => acc + current.grade, 0);
@@ -35,7 +36,7 @@ function BulletinNote({ etudiant }) {
   };  
   const [open, setOpen] = useState(false);
   const getNotes=(year)=>{
-    fetch(`http://localhost:8010/api/grades/student/${etudiant._id}?year=${year||selectedYear}`,{
+    fetch(`${BACKEND_URL}/grades/bulletin/${etudiant._id}?year=${year||selectedYear}`,{
       method:"GET"})
     .then(res=>res.json()).then(data=> { 
         setNotes(data)

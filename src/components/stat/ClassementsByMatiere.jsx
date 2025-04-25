@@ -4,6 +4,7 @@ import {
   TableHead, TableRow, FormControl, InputLabel, Select, MenuItem, TablePagination
 } from '@mui/material';
 
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 const ClassementsByMatiere = () => {
   const [notes, setNotes] = useState([]);
   const [courses, setCourses] = useState([]);
@@ -13,12 +14,12 @@ const ClassementsByMatiere = () => {
 
   // Charger les données depuis l'API
   useEffect(() => {
-    fetch("http://localhost:8010/api/grades")
+    fetch(`${BACKEND_URL}/grades`)
       .then(res => res.json())
       .then(data => setNotes(data))
       .catch(err => console.error("Erreur chargement notes:", err));
 
-    fetch("http://localhost:8010/api/courses")
+    fetch(`${BACKEND_URL}/courses`)
       .then(res => res.json())
       .then(data => setCourses(data))
       .catch(err => console.error("Erreur chargement cours:", err));

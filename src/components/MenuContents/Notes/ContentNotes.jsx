@@ -14,9 +14,10 @@ import ExportCsvNote from "../ExportCsvNotes";
 import { TableFooter, TablePagination } from "@mui/material";
 import TableHeadSorting from "../TableHeadSorting";
 import SearchNotes from "./SearchNotes";
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 function ContentNotes() {
   const userconnected = JSON.parse(localStorage.getItem("user"));
-  const isAdmin = userconnected?.role === "admin";
+  const isAdmin = userconnected?.role === "SCOLARITE";
   const [noteToEdit, setNoteToEdit] = useState(null);
   const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);
@@ -110,7 +111,10 @@ function ContentNotes() {
   };
 
   function fetchNote(){
-    fetch("http://localhost:8010/api/grades")
+    fetch(`${BACKEND_URL}/grades`,{
+      method:"GET",
+      Authorization: localStorage.getItem('jwtToken')
+    })
     .then((res) => res.json())
     .then((data) => {
       setNotes(data);
@@ -122,13 +126,23 @@ function ContentNotes() {
       );
     })
     .catch(() => console.error("Erreur lors du chargement", "error"));
-  fetch("http://localhost:8010/api/students")
-    .then((res) => res.json())
-    .then((data) => {
-      setStudents(data);
+  if(userconnected.role !== "STUDENT") {
+    fetch(`${BACKEND_URL}/students`,{
+      method:"GET",
+      Authorization: localStorage.getItem('jwtToken')
     })
-    .catch(() => console.error("Erreur lors du chargement", "error"));
-  fetch("http://localhost:8010/api/courses")
+      .then((res) => res.json())
+      .then((data) => {
+        setStudents(data);
+      })
+      .catch(() => console.error("Erreur lors du chargement", "error"));
+  }
+
+  
+  fetch(`${BACKEND_URL}/courses`,{
+    method:"GET",
+    Authorization: localStorage.getItem('jwtToken')
+  })
     .then((res) => res.json())
     .then((data) => {
       setCourses(data);
@@ -147,8 +161,9 @@ function ContentNotes() {
   }, []);
   const deleteNote = async (id) => {
     try {
-      await fetch(`http://localhost:8010/api/grades/${id}`, {
+      await fetch(`${BACKEND_URL}/grades/${id}`, {
         method: "DELETE",
+        Authorization:localStorage.getItem("jwtToken")
       });
       const tab = [...notes].filter((note) => note._id !== id);
       setFilteredNotes(
@@ -204,7 +219,7 @@ function ContentNotes() {
           <TableHead>
             <TableRow>
               <TableHeadSorting
-                headCells={headCells}
+                headCells={userconnected.role === "STUDENT"?headCells.filter(header=>header.id!=="student"):headCells}
                 onRequestSort={handleRequestSort}
                 order={order}
                 orderBy={orderBy}
@@ -216,9 +231,14 @@ function ContentNotes() {
             {filteredNotes.map((row) => (
               <TableRow key={row._id}>
                 <TableCell>{row.course?.name}</TableCell>
+                {userconnected.role !== "STUDENT"
+                &&
+                (
                 <TableCell>
                   {row.student?.firstName} {row.student?.lastName}
                 </TableCell>
+
+                )}
                 <TableCell>{row.grade}</TableCell>
                 <TableCell>{new Date(row.date).toLocaleDateString()}</TableCell>
                 {isAdmin && (

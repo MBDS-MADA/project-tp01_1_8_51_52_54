@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 function useFetchEtudiant(id) {
   const [form, setForm] = useState({ firstName: '', lastName: '' });
 
   useEffect(() => {
     async function fetchEtudiant() {
       try {
-        const res = await fetch(`http://localhost:8010/api/students/${id}`);
+        const res = await fetch(`${BACKEND_URL}/students/${id}`);
         if (!res.ok) throw new Error("Erreur lors du chargement de l'étudiant");
         const data = await res.json();
         setForm({
@@ -103,7 +104,7 @@ function ComponentUpdateEtudiant() {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const res = await fetch(`http://localhost:8010/api/students/${id}`, {
+        const res = await fetch(`${BACKEND_URL}/students/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'

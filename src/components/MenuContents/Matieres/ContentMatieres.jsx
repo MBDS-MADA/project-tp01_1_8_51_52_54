@@ -21,6 +21,7 @@ import ExportCsv from "../ExportCsv";
 import SearchMatiere from "./SearchMatieres";
 import TableHeadSorting from "../TableHeadSorting";
 
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 function ContentMatieres() {
   const userconnected = JSON.parse(localStorage.getItem("user"));
   const isAdmin = userconnected?.role === "admin";
@@ -99,7 +100,7 @@ function ContentMatieres() {
 
   // Charger la liste des cours depuis l'API
   const init = ()=>{
-    fetch("http://localhost:8010/api/courses")
+    fetch(`${BACKEND_URL}/courses`)
       .then((res) => res.json())
       .then((data) => {
         setCourses(data);
@@ -122,7 +123,7 @@ function ContentMatieres() {
     if (alreadyExists) return;
 
     try {
-      const response = await fetch("http://localhost:8010/api/courses", {
+      const response = await fetch(`${BACKEND_URL}/courses`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newCourse.trim() }),
@@ -147,7 +148,7 @@ function ContentMatieres() {
   const saveEdit = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8010/api/courses/${editingId}`,
+        `${BACKEND_URL}/courses/${editingId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -176,7 +177,7 @@ function ContentMatieres() {
   // Supprimer un cours
   const deleteCourse = async (id) => {
     try {
-      await fetch(`http://localhost:8010/api/courses/${id}`, {
+      await fetch(`${BACKEND_URL}/courses/${id}`, {
         method: "DELETE",
       });
       const tab=[...courses].filter((course) => course._id !== id)

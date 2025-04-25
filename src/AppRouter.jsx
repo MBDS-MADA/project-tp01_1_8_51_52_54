@@ -22,43 +22,43 @@ const AppRouter = () => {
         <Route path="/app" element={<App />}>
 
         <Route path="index" element={
-          <ProtectedRoute allowedRoles={["admin", "user"]}>
+          <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE","STUDENT"]}>
             <Index />
           </ProtectedRoute>
         } />
 
        
          <Route path="update-etudiant/:id" element={
-          <ProtectedRoute allowedRoles={["admin"]}>
+          <ProtectedRoute allowedRoles={["SCOLARITE"]}>
             <ComponentUpdateEtudiant />
           </ProtectedRoute>
         } />
 
           <Route path="console" element={
-            <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <ProtectedRoute allowedRoles={["SCOLARITE"]}>
               <StatsPage />
             </ProtectedRoute>
           } />
           <Route path="notes" element={
-            <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <ProtectedRoute allowedRoles={["SCOLARITE","STUDENT"]}>
               <ContentNotes />
             </ProtectedRoute>
           } />
 
           <Route path="notes/add" element={
-            <ProtectedRoute allowedRoles={["admin"]}>
+            <ProtectedRoute allowedRoles={["SCOLARITE"]}>
               <NoteForm />
             </ProtectedRoute>
           } />
 
           <Route path="etudiants" element={
-            <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <ProtectedRoute allowedRoles={["SCOLARITE"]}>
               <ContentEtudiants />
             </ProtectedRoute>
           } />
 
           <Route path="matieres" element={
-            <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <ProtectedRoute allowedRoles={["SCOLARITE"]}>
               <ContentMatieres />
             </ProtectedRoute>
           } />
@@ -70,7 +70,7 @@ const AppRouter = () => {
           } />
 
           <Route path="notfound" element={
-            <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <ProtectedRoute >
               <NotFound />
             </ProtectedRoute>
           } />
