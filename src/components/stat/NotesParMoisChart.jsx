@@ -9,6 +9,7 @@ import {
 const getMonth = (dateStr) => dateStr.slice(0, 7);
 const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 const NotesParMoisChart = () => {
+  const user=JSON.parse(localStorage.getItem("user"))
   const [notes, setNotes] = useState([]);
   const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);
@@ -80,6 +81,9 @@ const NotesParMoisChart = () => {
             </Select>
           </FormControl>
         </Grid>
+        {user.role !=="STUDENT" &&
+        (
+
         <Grid item xs={12} sm={6}>
           <FormControl fullWidth>
             <InputLabel>Étudiant</InputLabel>
@@ -97,6 +101,7 @@ const NotesParMoisChart = () => {
             </Select>
           </FormControl>
         </Grid>
+        )}
       </Grid>
 
       {dataParMois.length === 0 ? (

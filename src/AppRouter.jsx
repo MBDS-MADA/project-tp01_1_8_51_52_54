@@ -29,36 +29,36 @@ const AppRouter = () => {
 
        
          <Route path="update-etudiant/:id" element={
-          <ProtectedRoute allowedRoles={["SCOLARITE"]}>
+          <ProtectedRoute allowedRoles={["SCOLARITE","ADMIN"]}>
             <ComponentUpdateEtudiant />
           </ProtectedRoute>
         } />
 
           <Route path="console" element={
-            <ProtectedRoute allowedRoles={["SCOLARITE"]}>
+            <ProtectedRoute allowedRoles={["SCOLARITE","ADMIN","STUDENT"]}>
               <StatsPage />
             </ProtectedRoute>
           } />
           <Route path="notes" element={
-            <ProtectedRoute allowedRoles={["SCOLARITE","STUDENT"]}>
+            <ProtectedRoute allowedRoles={["SCOLARITE","STUDENT","ADMIN"]}>
               <ContentNotes />
             </ProtectedRoute>
           } />
 
           <Route path="notes/add" element={
-            <ProtectedRoute allowedRoles={["SCOLARITE"]}>
+            <ProtectedRoute allowedRoles={["SCOLARITE","ADMIN"]}>
               <NoteForm />
             </ProtectedRoute>
           } />
 
           <Route path="etudiants" element={
-            <ProtectedRoute allowedRoles={["SCOLARITE"]}>
+            <ProtectedRoute allowedRoles={["SCOLARITE","ADMIN"]}>
               <ContentEtudiants />
             </ProtectedRoute>
           } />
 
           <Route path="matieres" element={
-            <ProtectedRoute allowedRoles={["SCOLARITE"]}>
+            <ProtectedRoute allowedRoles={["SCOLARITE","ADMIN"]}>
               <ContentMatieres />
             </ProtectedRoute>
           } />
