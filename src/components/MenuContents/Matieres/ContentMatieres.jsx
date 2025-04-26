@@ -22,8 +22,8 @@ import SearchMatiere from "./SearchMatieres";
 import TableHeadSorting from "../TableHeadSorting";
 
 function ContentMatieres() {
-  const userconnected = JSON.parse(localStorage.getItem("user"));
-  const isAdmin = userconnected?.role === "admin";
+  const userconnected = JSON.parse(localStorage.getItem("SCOLARITE"));
+  const isAdmin = userconnected?.role === "ADMIN";
 
   const [courses, setCourses] = useState([]);
   const [filteredCourses, setFilteredCourses] = useState([]);

@@ -3,12 +3,19 @@
         "id": 1,
         "username":"admin",
         "password":"admin",
-        "role":"admin"
+        "role":"ADMIN"
     },
     {
         "id": 2,
         "username":"user",
         "password":"user",
-        "role":"user"
+        "role":"SCOLARITE"
+    },
+    {
+        "id": 3,
+        "student": "67f8ae616972821621b5faf7",
+        "username":"user",
+        "password":"user",
+        "role":"STUDENT"
     }
 ]

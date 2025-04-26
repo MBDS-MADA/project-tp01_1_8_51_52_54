@@ -15,8 +15,8 @@ import { TableFooter, TablePagination } from "@mui/material";
 import TableHeadSorting from "../TableHeadSorting";
 import SearchNotes from "./SearchNotes";
 function ContentNotes() {
-  const userconnected = JSON.parse(localStorage.getItem("user"));
-  const isAdmin = userconnected?.role === "admin";
+  const userconnected = JSON.parse(localStorage.getItem("SCOLARITE"));
+  const isAdmin = userconnected?.role === "ADMIN";
   const [noteToEdit, setNoteToEdit] = useState(null);
   const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);
