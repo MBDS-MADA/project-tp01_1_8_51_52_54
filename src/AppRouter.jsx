@@ -29,36 +29,36 @@ const AppRouter = () => {
 
        
          <Route path="update-etudiant/:id" element={
-          <ProtectedRoute allowedRoles={["SCOLARITE","ADMIN"]}>
+          <ProtectedRoute allowedRoles={["ADMIN"]}>
             <ComponentUpdateEtudiant />
           </ProtectedRoute>
         } />
 
           <Route path="console" element={
-            <ProtectedRoute allowedRoles={["SCOLARITE","ADMIN","STUDENT"]}>
+            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE"]}>
               <StatsPage />
             </ProtectedRoute>
           } />
           <Route path="notes" element={
-            <ProtectedRoute allowedRoles={["SCOLARITE","STUDENT","ADMIN"]}>
+            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE"]}>
               <ContentNotes />
             </ProtectedRoute>
           } />
 
           <Route path="notes/add" element={
-            <ProtectedRoute allowedRoles={["SCOLARITE","ADMIN"]}>
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
               <NoteForm />
             </ProtectedRoute>
           } />
 
           <Route path="etudiants" element={
-            <ProtectedRoute allowedRoles={["SCOLARITE","ADMIN"]}>
+            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE"]}>
               <ContentEtudiants />
             </ProtectedRoute>
           } />
 
           <Route path="matieres" element={
-            <ProtectedRoute allowedRoles={["SCOLARITE","ADMIN"]}>
+            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE"]}>
               <ContentMatieres />
             </ProtectedRoute>
           } />
@@ -70,14 +70,10 @@ const AppRouter = () => {
           } />
 
           <Route path="notfound" element={
-            <ProtectedRoute >
+            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE"]}>
               <NotFound />
             </ProtectedRoute>
           } />
-          
-          
-
-
         </Route>
       </Routes>
     </BrowserRouter>

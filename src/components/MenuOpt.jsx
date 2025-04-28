@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 function MenuOpt() {
     const user = JSON.parse(localStorage.getItem("user"));
     const menu_liste = [
-        { text: "Notes", path: "/app/notes", roles: ["SCOLARITE","STUDENT","ADMIN"] },
-        { text: "Créer Note", path: "/app/notes/add", roles: ["SCOLARITE","ADMIN"] },
-        { text: "Etudiants", path: "/app/etudiants", roles: ["SCOLARITE","ADMIN"] },
-        { text: "Matières", path: "/app/matieres", roles: ["SCOLARITE","ADMIN"] },
-        { text: "Statistique", path: "/app/console", roles: ["SCOLARITE","ADMIN","STUDENT"] },
-        { text: "A propos", path: "/app/apropos", roles: ["SCOLARITE","STUDENT","ADMIN"] },
-        { text: "Deconnexion", path: "/", roles: ["SCOLARITE","STUDENT","ADMIN"] }
+        { text: "Notes", path: "/app/notes", roles: ["ADMIN","SCOLARITE"] },
+        { text: "Créer Note", path: "/app/notes/add", roles: ["ADMIN"] },
+        { text: "Etudiants", path: "/app/etudiants", roles: ["ADMIN","SCOLARITE"] },
+        { text: "Matières", path: "/app/matieres", roles: ["ADMIN","SCOLARITE"] },
+        { text: "Statistique", path: "/app/console", roles: ["ADMIN","SCOLARITE"] },
+        { text: "A propos", path: "/app/apropos", roles: ["ADMIN","SCOLARITE"] },
+        { text: "Deconnexion", path: "/", roles: ["ADMIN","SCOLARITE"] }
       ]
    
 

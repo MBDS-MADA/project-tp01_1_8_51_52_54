@@ -16,8 +16,8 @@ import TableHeadSorting from "../TableHeadSorting";
 import SearchNotes from "./SearchNotes";
 const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 function ContentNotes() {
-  const userconnected = JSON.parse(localStorage.getItem("user"));
-  const isAdmin = userconnected?.role === "SCOLARITE";
+  const userconnected = JSON.parse(localStorage.getItem("SCOLARITE"));
+  const isAdmin = userconnected?.role === "ADMIN";
   const [noteToEdit, setNoteToEdit] = useState(null);
   const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);
