@@ -22,43 +22,43 @@ const AppRouter = () => {
         <Route path="/app" element={<App />}>
 
         <Route path="index" element={
-          <ProtectedRoute allowedRoles={["admin", "user"]}>
+          <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE","STUDENT"]}>
             <Index />
           </ProtectedRoute>
         } />
 
        
          <Route path="update-etudiant/:id" element={
-          <ProtectedRoute allowedRoles={["admin"]}>
+          <ProtectedRoute allowedRoles={["ADMIN"]}>
             <ComponentUpdateEtudiant />
           </ProtectedRoute>
         } />
 
           <Route path="console" element={
-            <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE"]}>
               <StatsPage />
             </ProtectedRoute>
           } />
           <Route path="notes" element={
-            <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE"]}>
               <ContentNotes />
             </ProtectedRoute>
           } />
 
           <Route path="notes/add" element={
-            <ProtectedRoute allowedRoles={["admin"]}>
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
               <NoteForm />
             </ProtectedRoute>
           } />
 
           <Route path="etudiants" element={
-            <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE"]}>
               <ContentEtudiants />
             </ProtectedRoute>
           } />
 
           <Route path="matieres" element={
-            <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE"]}>
               <ContentMatieres />
             </ProtectedRoute>
           } />
@@ -70,14 +70,10 @@ const AppRouter = () => {
           } />
 
           <Route path="notfound" element={
-            <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE"]}>
               <NotFound />
             </ProtectedRoute>
           } />
-          
-          
-
-
         </Route>
       </Routes>
     </BrowserRouter>

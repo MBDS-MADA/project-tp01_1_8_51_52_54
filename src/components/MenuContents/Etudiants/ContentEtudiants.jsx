@@ -53,8 +53,8 @@ function Content({ activeItem }) {
 
 function ContentEtudiants() {
 
-  const userconnected = JSON.parse(localStorage.getItem("user"));
-  const isAdmin = userconnected?.role === "admin";
+  const userconnected = JSON.parse(localStorage.getItem("SCOLARITE"));
+  const isAdmin = userconnected?.role === "ADMIN";
   const [activeItem, setActiveItem] = useState('Notes');
   
   return (
