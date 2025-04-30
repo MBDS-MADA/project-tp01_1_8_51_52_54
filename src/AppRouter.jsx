@@ -11,6 +11,7 @@ import ComponentUpdateEtudiant from './components/MenuContents/Etudiants/Compone
 import ContentNotes from './components/MenuContents/notes/ContentNotes';
 import NoteForm from './components/MenuContents/notes/CreateNoteForm';
 import Index from './components/index';
+import SignIn from './components/Authentification/SignIn';
 
 
 const AppRouter = () => {
@@ -18,6 +19,8 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        
+        <Route path="/SignIn" element={<SignIn />} />
 
         <Route path="/app" element={<App />}>
 

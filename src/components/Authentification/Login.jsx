@@ -10,6 +10,7 @@ import {
   Stack
 } from '@mui/material';
 import users from '../../data/users.json';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   localStorage.removeItem('user');
@@ -86,6 +87,12 @@ const Login = () => {
             </Button>
           </Stack>
         </form>
+
+        <Link to={`/SignIn`} style={{ textDecoration: 'none' }}>
+                        <Button variant="contained" color="success">
+                          SingInSide
+                        </Button>
+                      </Link>
       </Paper>
     </Box>
   );
