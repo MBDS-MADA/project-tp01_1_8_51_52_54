@@ -11,7 +11,7 @@ import ComponentUpdateEtudiant from './components/MenuContents/Etudiants/Compone
 import ContentNotes from './components/MenuContents/notes/ContentNotes';
 import NoteForm from './components/MenuContents/notes/CreateNoteForm';
 import Index from './components/index';
-import SignIn from './components/Authentification/SignIn';
+import SignIn from './components/Authentification/sign-in/SignIn';
 
 
 const AppRouter = () => {
