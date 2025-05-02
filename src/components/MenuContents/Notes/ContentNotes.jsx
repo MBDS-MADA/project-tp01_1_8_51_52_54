@@ -14,14 +14,17 @@ import ExportCsvNote from "../ExportCsvNotes";
 import { TableFooter, TablePagination } from "@mui/material";
 import TableHeadSorting from "../TableHeadSorting";
 import SearchNotes from "./SearchNotes";
+import { Link } from "react-router-dom";
+import BulletinNote from "../Etudiants/BulletinNote";
 const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 function ContentNotes() {
-  const userconnected = JSON.parse(localStorage.getItem("SCOLARITE"));
+  const userconnected = JSON.parse(localStorage.getItem("user"));
+  console.log(userconnected)
   const isAdmin = userconnected?.role === "ADMIN";
   const [noteToEdit, setNoteToEdit] = useState(null);
   const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);
-
+  const [student,setStudent]=useState({})
   const [notes, setNotes] = useState([]);
   const [searchTerm, setSearchTerm] = useState({
     studentId: 0,
@@ -109,11 +112,24 @@ function ContentNotes() {
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
-
+  function fetchStudent(){
+    fetch(`${BACKEND_URL}/student`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${userconnected.token}`
+      }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      setStudent(data)
+    }).catch(() => console.error("Erreur lors du chargement", "error"));
+  }
   function fetchNote(){
     fetch(`${BACKEND_URL}/grades`,{
       method:"GET",
-      Authorization: localStorage.getItem('jwtToken')
+      headers:{
+        authorization:`Bearer ${userconnected.token}`
+      }
     })
     .then((res) => res.json())
     .then((data) => {
@@ -129,7 +145,9 @@ function ContentNotes() {
   if(userconnected.role !== "STUDENT") {
     fetch(`${BACKEND_URL}/students`,{
       method:"GET",
-      Authorization: localStorage.getItem('jwtToken')
+      headers:{
+        authorization:`Bearer ${userconnected.token}`
+      }
     })
       .then((res) => res.json())
       .then((data) => {
@@ -141,7 +159,9 @@ function ContentNotes() {
   
   fetch(`${BACKEND_URL}/courses`,{
     method:"GET",
-    Authorization: localStorage.getItem('jwtToken')
+    headers:{
+      authorization:`Bearer ${userconnected.token}`
+    }
   })
     .then((res) => res.json())
     .then((data) => {
@@ -158,12 +178,17 @@ function ContentNotes() {
 
   useEffect(() => {
     fetchNote()
+    if(userconnected.role==="STUDENT"){
+      fetchStudent()
+    }
   }, []);
   const deleteNote = async (id) => {
     try {
       await fetch(`${BACKEND_URL}/grades/${id}`, {
         method: "DELETE",
-        Authorization:localStorage.getItem("jwtToken")
+        headers:{
+          authorization:`Bearer ${userconnected.token}`
+        }
       });
       const tab = [...notes].filter((note) => note._id !== id);
       setFilteredNotes(
@@ -204,9 +229,15 @@ function ContentNotes() {
   return (
     <div>
       <p>Voici le contenu de la rubrique des Notes</p>
+      <div style={{ display:"flex",justifyContent:"space-around" }}>
+      {userconnected.role != "STUDENT" ?
+      <Link to="/app/notes/add" style={{marginRight:20}}>Ajouter une note</Link>
+      :<BulletinNote isButton={false} etudiant={student} />
+      }
       {notes.length>0 &&
         <ExportCsvNote title="Notes" data={notes} />
       }
+      </div>
       {noteToEdit && (
         <UpdateNoteForm
           noteToEdit={noteToEdit}

@@ -53,7 +53,7 @@ function Content({ activeItem }) {
 
 function ContentEtudiants() {
 
-  const userconnected = JSON.parse(localStorage.getItem("SCOLARITE"));
+  const userconnected = JSON.parse(localStorage.getItem("user"));
   const isAdmin = userconnected?.role === "ADMIN";
   const [activeItem, setActiveItem] = useState('Notes');
   
@@ -70,6 +70,7 @@ function ContentEtudiants() {
 
 
 function ComponentAddEtudiant() { 
+  
   const [form, setForm] = useState({
     firstName: '',
     lastName: ''
@@ -124,10 +125,12 @@ function ComponentAddEtudiant() {
   );
 }
 function AddEtudiant(etudiant) {
+  const userconnected = JSON.parse(localStorage.getItem("user"));
   fetch(`${BACKEND_URL}/students`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      authorization:`Bearer ${userconnected.token}` 
     },
     body: JSON.stringify(etudiant),
   })
@@ -160,10 +163,13 @@ function ContentEtudiantsDefault() {
     firstName:"",
     lastName:""
   })
-   
+  const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     fetch(`${BACKEND_URL}/students`,
-      {method : 'GET'}
+      {method : 'GET', headers:{
+        authorization:`Bearer ${user.token}` 
+      } 
+    }
     )
       .then((response) => {
         if (!response.ok) {
@@ -194,6 +200,9 @@ function ContentEtudiantsDefault() {
     
     fetch(`${BACKEND_URL}/students/${id}`,{
       method:"DELETE",
+      headers:{
+        authorization:`Bearer ${user.token}` 
+      },
       body:JSON.stringify({id:id})
     })
     .then(res=>res.json()).then(data=> { 

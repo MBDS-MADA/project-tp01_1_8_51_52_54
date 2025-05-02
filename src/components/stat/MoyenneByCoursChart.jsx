@@ -5,17 +5,28 @@ import {
 } from 'recharts';
 const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 const MoyenneByCourseChart = () => {
+  const user=JSON.parse(localStorage.getItem('user'))
   const [notes, setNotes] = useState([]);
   const [courses, setCourses] = useState([]);
 
   // Charger les données depuis les APIs
   useEffect(() => {
-    fetch(`${BACKEND_URL}/grades`)
+    fetch(`${BACKEND_URL}/grades`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setNotes(data))
       .catch(err => console.error("Erreur chargement notes :", err));
 
-    fetch(`${BACKEND_URL}/courses`)
+    fetch(`${BACKEND_URL}/courses`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setCourses(data))
       .catch(err => console.error("Erreur chargement cours :", err));

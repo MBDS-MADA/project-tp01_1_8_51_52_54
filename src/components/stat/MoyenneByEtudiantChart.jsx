@@ -7,15 +7,25 @@ const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 const MoyenneByEtudiantChart = () => {
   const [notes, setNotes] = useState([]);
   const [students, setStudents] = useState([]);
-
+  const user=JSON.parse(localStorage.getItem('user'))
   // Charger depuis l’API
   useEffect(() => {
-    fetch(`${BACKEND_URL}/grades`)
+    fetch(`${BACKEND_URL}/grades`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setNotes(data))
       .catch(err => console.error("Erreur chargement notes :", err));
 
-    fetch(`${BACKEND_URL}/students`)
+    fetch(`${BACKEND_URL}/students`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setStudents(data))
       .catch(err => console.error("Erreur chargement étudiants :", err));
