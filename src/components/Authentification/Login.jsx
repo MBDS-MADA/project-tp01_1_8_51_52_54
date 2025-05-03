@@ -88,7 +88,7 @@ const Login = () => {
           </Stack>
         </form>
 
-        <Link to={`/SignIn`} style={{ textDecoration: 'none' }}>
+        <Link to={`/SignInSide`} style={{ textDecoration: 'none' }}>
                         <Button variant="contained" color="success">
                           SingInSide
                         </Button>
