@@ -4,11 +4,22 @@ import { useNavigate } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom'
 import MenuItem from './components/MenuItem'
 import Header from './components/Header'
-import Footer from './components/Footer'
+// import Footer from './components/Footer'
 import './App.css'
 import MenuOpt from './components/MenuOpt';
 
-function App() {
+//Blog import
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+import AppTheme from './components/blog/shared-theme/AppTheme';
+import AppAppBar from './components/blog/components/AppAppBar';
+import MainContent from './components/MainContent';
+import Latest from './components/blog/components//Latest';
+import Footer from './components/blog/components/Footer';
+import { Margin } from 'react-to-pdf';
+
+function App(props) {
   
 
   const navigate = useNavigate();
@@ -33,12 +44,18 @@ function App() {
   // };
   return (
     <>
-     <MenuOpt/>
-      <Header />
-      <div id='content'>
-        <Outlet />
-      </div>
+    <AppTheme {...props}>
+      <CssBaseline enableColorScheme />
+        <AppAppBar />
+        {/* <MenuOpt/> */}
+          {/* <Header /> */}
+          <div style={{ marginTop: '110px' }}>
+          </div>
+          <div id='content'>
+            <Outlet />
+          </div>
       <Footer />
+    </AppTheme>
     </>
   );
 }

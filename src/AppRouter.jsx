@@ -13,6 +13,7 @@ import NoteForm from './components/MenuContents/notes/CreateNoteForm';
 import Index from './components/index';
 // import SignIn from './components/Authentification/sign-in/SignIn';
 import SignInSide from './components/Authentification/sign-in-side/SignInSide';
+import Blog from './components/blog/Blog';
 
 
 const AppRouter = () => {
@@ -21,9 +22,16 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<SignInSide />} />
         
-        <Route path="/SignInSide" element={<SignInSide />} />
+        {/* <Route path="/blog" element={<Blog />} /> */}
 
         <Route path="/app" element={<App />}>
+
+{/* 
+        <Route path="blog" element={
+            <ProtectedRoute allowedRoles={["admin", "user"]}>
+              <Blog />
+            </ProtectedRoute>
+          } /> */}
 
         <Route path="index" element={
           <ProtectedRoute allowedRoles={["admin", "user"]}>

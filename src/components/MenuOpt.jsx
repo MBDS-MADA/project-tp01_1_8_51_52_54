@@ -10,6 +10,7 @@ function MenuOpt() {
         { text: "Matières", path: "/app/matieres", roles: ["admin","user"] },
         { text: "Statistique", path: "/app/console", roles: ["admin","user"] },
         { text: "A propos", path: "/app/apropos", roles: ["admin","user"] },
+        // { text: "blog", path: "/app/blog", roles: ["admin","user"] },
         { text: "Deconnexion", path: "/", roles: ["admin","user"] }
       ]
    
