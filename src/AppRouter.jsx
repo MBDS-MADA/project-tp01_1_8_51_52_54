@@ -35,18 +35,18 @@ const AppRouter = () => {
         } />
 
           <Route path="console" element={
-            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE"]}>
+            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE","STUDENT"]}>
               <StatsPage />
             </ProtectedRoute>
           } />
           <Route path="notes" element={
-            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE"]}>
+            <ProtectedRoute allowedRoles={["ADMIN", "SCOLARITE","STUDENT"]}>
               <ContentNotes />
             </ProtectedRoute>
           } />
 
           <Route path="notes/add" element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
+            <ProtectedRoute allowedRoles={["ADMIN","SCOLARITE"]}>
               <NoteForm />
             </ProtectedRoute>
           } />

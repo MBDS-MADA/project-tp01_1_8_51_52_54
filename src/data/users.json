@@ -9,13 +9,12 @@
         "id": 2,
         "username":"user",
         "password":"user",
-        "role":"SCOLARITE"
+        "role":"STUDENT"
     },
     {
         "id": 3,
-        "student": "67f8ae616972821621b5faf7",
-        "username":"user",
-        "password":"user",
-        "role":"STUDENT"
+        "username":"scolarite",
+        "password":"scolarite",
+        "role":"SCOLARITE"
     }
 ]

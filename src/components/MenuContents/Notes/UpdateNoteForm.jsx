@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './CreateNoteForm.css';
-
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 function UpdateNoteForm({ noteToEdit, onUpdateSuccess }) {
   const [students, setStudents] = useState([]);
   const [student, setStudent] = useState('');
@@ -11,7 +11,7 @@ function UpdateNoteForm({ noteToEdit, onUpdateSuccess }) {
 
   async function fetchStudentList() {
     try {
-      const response = await fetch('http://localhost:8010/api/students');
+      const response = await fetch(`${BACKEND_URL}/students`);
       const data = await response.json();
       setStudents(data);
     } catch (error) {
@@ -59,7 +59,7 @@ function UpdateNoteForm({ noteToEdit, onUpdateSuccess }) {
     };
 
     try {
-      const response = await fetch(`http://localhost:8010/api/grades/${noteToEdit._id}`, {
+      const response = await fetch(`${BACKEND_URL}/grades/${noteToEdit._id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
