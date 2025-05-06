@@ -21,7 +21,7 @@ import ExportCsv from "../ExportCsv";
 import SearchMatiere from "./SearchMatieres";
 import TableHeadSorting from "../TableHeadSorting";
 
-const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 function ContentMatieres() {
   const userconnected = JSON.parse(localStorage.getItem("user"));
   const isAdmin = userconnected?.role === "ADMIN";
@@ -32,7 +32,7 @@ function ContentMatieres() {
   const [editingId, setEditingId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [editedName, setEditedName] = useState("");
-  const [totalPages,setTotalPages]=useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: "",
@@ -45,62 +45,67 @@ function ContentMatieres() {
       disablePadding: true,
       label: 'Nom de la matière',
     },
-   
+
   ];
-  const filtres=(coursesList)=>{
-    const data=(coursesList||[...courses]).filter((course) => course.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filtres = (coursesList) => {
+    const data = (coursesList || [...courses]).filter((course) => course.name.toLowerCase().includes(searchTerm.toLowerCase()))
     setTotalPages(data.length)
     return data;
   }
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('name');
-     const [page, setPage] = React.useState(0);
-    const handleChangePage = (event, newPage) => {
-      setPage(newPage);
-    };
-    
+  const [order, setOrder] = React.useState('asc');
+  const [orderBy, setOrderBy] = React.useState('name');
+  const [page, setPage] = React.useState(0);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-     React.useEffect(()=>{
-        setFilteredCourses( filtres()
-          .sort(getComparator(order, orderBy))
-          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage))
-        
-      },[order, orderBy, page, rowsPerPage,searchTerm])
-      
-    
-      const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-      };
-      function descendingComparator(a, b, orderBy) {
-        if (b[orderBy] < a[orderBy]) {
-          return -1;
-        }
-        if (b[orderBy] > a[orderBy]) {
-          return 1;
-        }
-        return 0;
-      }
-      
-      function getComparator(order, orderBy) {
-        return order === 'desc'
-          ? (a, b) => descendingComparator(a, b, orderBy)
-          : (a, b) => -descendingComparator(a, b, orderBy);
-      }
-      const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
-      };
+
+  React.useEffect(() => {
+    setFilteredCourses(filtres()
+      .sort(getComparator(order, orderBy))
+      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage))
+
+  }, [order, orderBy, page, rowsPerPage, searchTerm])
+
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+  function descendingComparator(a, b, orderBy) {
+    if (b[orderBy] < a[orderBy]) {
+      return -1;
+    }
+    if (b[orderBy] > a[orderBy]) {
+      return 1;
+    }
+    return 0;
+  }
+
+  function getComparator(order, orderBy) {
+    return order === 'desc'
+      ? (a, b) => descendingComparator(a, b, orderBy)
+      : (a, b) => -descendingComparator(a, b, orderBy);
+  }
+  const handleRequestSort = (event, property) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
 
   const showSnackbar = (message, severity = "success") => {
     setSnackbar({ open: true, message, severity });
   };
 
   // Charger la liste des cours depuis l'API
-  const init = ()=>{
-    fetch(`${BACKEND_URL}/courses`)
+  const init = () => {
+    fetch(`${BACKEND_URL}/courses`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${userconnected.token}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         setCourses(data);
@@ -125,8 +130,12 @@ function ContentMatieres() {
     try {
       const response = await fetch(`${BACKEND_URL}/courses`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${userconnected.token}`
+        },
         body: JSON.stringify({ name: newCourse.trim() }),
+
       });
       init();
       setSearchTerm("");
@@ -151,20 +160,25 @@ function ContentMatieres() {
         `${BACKEND_URL}/courses/${editingId}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${userconnected.token}`
+          },
           body: JSON.stringify({ name: editedName }),
         }
       );
       const data = await response.json();
-      console.log(data,editingId);
-      
+      console.log(data, editingId);
+
       setCourses((prev) =>
         prev.map((c) => {
-          return (c._id === editingId ? data.updated : c)})
+          return (c._id === editingId ? data.updated : c)
+        })
       );
-      const tab=[...courses.map((c) => {
-        return (c._id === editingId ? data.updated : c)})]
-    
+      const tab = [...courses.map((c) => {
+        return (c._id === editingId ? data.updated : c)
+      })]
+
       setFilteredCourses(filtres(tab).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).sort(getComparator(order, orderBy)))
       setEditingId(null);
       setEditedName("");
@@ -179,10 +193,13 @@ function ContentMatieres() {
     try {
       await fetch(`${BACKEND_URL}/courses/${id}`, {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${userconnected.token}`
+        }
       });
-      const tab=[...courses].filter((course) => course._id !== id)
+      const tab = [...courses].filter((course) => course._id !== id)
       setFilteredCourses(filtres(tab).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).sort(getComparator(order, orderBy)));
-      
+
       setCourses((prev) => prev.filter((course) => course._id !== id));
       showSnackbar("Matière supprimée !");
     } catch (error) {
@@ -227,7 +244,7 @@ function ContentMatieres() {
           <TableHead>
             <TableRow>
               <TableHeadSorting headCells={headCells} onRequestSort={handleRequestSort} order={order}
-              orderBy={orderBy}/>
+                orderBy={orderBy} />
               {isAdmin && <TableCell align="right">Actions</TableCell>}
             </TableRow>
           </TableHead>
@@ -269,28 +286,28 @@ function ContentMatieres() {
               </TableRow>
             ))}
           </TableBody>
-           <TableFooter>
-                    <TableRow>
-                      <TablePagination
-                        rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                        colSpan={3}
-                        count={totalPages}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        slotProps={{
-                          select: {
-                            inputProps: {
-                              'aria-label': 'rows per page',
-                            },
-                            native: true,
-                          },
-                        }}
-                        onPageChange={handleChangePage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                       
-                      />
-                    </TableRow>
-                  </TableFooter>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={3}
+                count={totalPages}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                slotProps={{
+                  select: {
+                    inputProps: {
+                      'aria-label': 'rows per page',
+                    },
+                    native: true,
+                  },
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+
+              />
+            </TableRow>
+          </TableFooter>
         </Table>
       </TableContainer>
 
