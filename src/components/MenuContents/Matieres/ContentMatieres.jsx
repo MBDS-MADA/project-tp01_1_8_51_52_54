@@ -23,7 +23,7 @@ import TableHeadSorting from "../TableHeadSorting";
 
 const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 function ContentMatieres() {
-  const userconnected = JSON.parse(localStorage.getItem("SCOLARITE"));
+  const userconnected = JSON.parse(localStorage.getItem("user"));
   const isAdmin = userconnected?.role === "ADMIN";
 
   const [courses, setCourses] = useState([]);
