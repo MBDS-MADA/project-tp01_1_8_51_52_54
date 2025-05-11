@@ -9,7 +9,7 @@ import {
   Box,
   Stack
 } from '@mui/material';
-
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 const Login = () => {
   localStorage.removeItem('user');
 
@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-        const response = await fetch('http://localhost:8010/api/login', {
+        const response = await fetch(`${BACKEND_URL}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

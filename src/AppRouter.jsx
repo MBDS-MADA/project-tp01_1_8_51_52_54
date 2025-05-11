@@ -8,8 +8,8 @@ import ProtectedRoute from './ProtectedRoute';
 import NotFound from './components/NotFound';
 import StatsPage from './components/stat/StatsPage';
 import ComponentUpdateEtudiant from './components/MenuContents/Etudiants/ComponentUpdateEtudiant';
-import ContentNotes from './components/MenuContents/notes/ContentNotes';
-import NoteForm from './components/MenuContents/notes/CreateNoteForm';
+import ContentNotes from './components/MenuContents/Notes/ContentNotes';
+import NoteForm from './components/MenuContents/Notes/CreateNoteForm';
 import Index from './components/index';
 
 
