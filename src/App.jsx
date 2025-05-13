@@ -17,6 +17,7 @@ import AppAppBar from './components/blog/components/AppAppBar';
 import MainContent from './components/MainContent';
 import Latest from './components/blog/components//Latest';
 import Footer from './components/blog/components/Footer';
+// import Footer from './components/Footer';
 import { Margin } from 'react-to-pdf';
 
 function App(props) {
@@ -51,7 +52,7 @@ function App(props) {
           {/* <Header /> */}
           <div style={{ marginTop: '110px' }}>
           </div>
-          <div id='content'>
+          <div id='content' style={{ marginBottom: '110px' }}>
             <Outlet />
           </div>
       <Footer />
