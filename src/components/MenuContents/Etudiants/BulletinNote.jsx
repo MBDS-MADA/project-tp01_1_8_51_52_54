@@ -1,13 +1,13 @@
 import { Margin, usePDF } from "react-to-pdf";
-import notes from "../../../data/notes.json";
-import courses from "../../../data/courses.json";
-import etudiants from "../../../data/students.json";
+
 import Modal from "@mui/material/Modal";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-function BulletinNote({ etudiant }) {
+function BulletinNote({ etudiant,isButton=true }) {
+  const user=JSON.parse(localStorage.getItem('user'))
+  const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
  const [notes,setNotes]=useState([])
  const [selectedYear,setSelectedYear]=useState((new Date()).getFullYear())
   const sumGrades = notes.reduce((acc, current) => acc + current.grade, 0);
@@ -35,8 +35,10 @@ function BulletinNote({ etudiant }) {
   };  
   const [open, setOpen] = useState(false);
   const getNotes=(year)=>{
-    fetch(`http://localhost:8010/api/grades/student/${etudiant._id}?year=${year||selectedYear}`,{
-      method:"GET"})
+    fetch(`${BACKEND_URL}/grades/student/${etudiant._id}?year=${year||selectedYear}`,{
+      method:"GET", headers:{
+        authorization:`Bearer ${user.token}` 
+      }})
     .then(res=>res.json()).then(data=> { 
         setNotes(data)
     })
@@ -54,7 +56,7 @@ function BulletinNote({ etudiant }) {
   }
   return (
     <>
-      <Button variant="contained"  onClick={handleOpen}>Bulletin de Note</Button>
+      <Button style={{textTransform:"none"}} variant={isButton===true?"contained":"text"}    onClick={handleOpen}>Bulletin de Note</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -80,7 +82,10 @@ function BulletinNote({ etudiant }) {
           
         </Select>
       </FormControl>
-          <div>
+          <div style={{top:50,maxHeight:400,overflowY:"auto"}}>
+            
+         
+
             {notes.length >0 && 
             <button onClick={toPDF}>Télécharger</button>
             } 
@@ -90,6 +95,7 @@ function BulletinNote({ etudiant }) {
             >
               <div style={{margin:"0 auto"}}>
                 <h1>Bulletin de note</h1>
+                
                 <h2>
                   {etudiant.firstName} {etudiant.lastName}
                 </h2>
@@ -114,12 +120,12 @@ function BulletinNote({ etudiant }) {
                            note.course.name
                           }
                         </td>
-                        <td>{note.grade}</td>
+                        <td style={{textAlign:"right" }}>{note.grade}</td>
                       </tr>
                     ))}
                     <tr>
                       <td>Moyenne</td>
-                      <td>{avgGrade}</td>
+                      <td style={{textAlign:"right" }}>{avgGrade.toFixed(2)}</td>
                     </tr>
                   </tbody>
                 </table>

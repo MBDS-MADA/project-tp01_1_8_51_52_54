@@ -8,13 +8,17 @@ import NotesParMoisChart from './NotesParMoisChart';
 import ClassementsByMatiere from './ClassementsByMatiere';
 
 const StatsPage = () => {
+    const user=JSON.parse(localStorage.getItem("user"))
     return (
         <div >
             <Typography variant="h4" gutterBottom>
                 Statistiques Générales
             </Typography>
+            {user.role !== "STUDENT" &&
+            (
+<>
             <Typography variant="h5" gutterBottom style={{ marginTop: '3em' }}>
-                1) Résumé
+                Résumé
             </Typography>
             <Grid container spacing={6} style={{ marginTop: '2em' }}>
                 <Grid item xs={12} sm={6} md={4}>
@@ -44,8 +48,10 @@ const StatsPage = () => {
                     </Card>
                 </Grid>
             </Grid>
+            </>
+            )}
             <Typography variant="h5" gutterBottom style={{ marginTop: '6em' }}>
-                2) Cours
+                 Cours
             </Typography>
             <Card style={{ marginTop: '2em' }}>
                 <CardContent>
@@ -53,8 +59,12 @@ const StatsPage = () => {
                     <MoyenneByCourseChart />
                 </CardContent>
             </Card>
+            {user.role !== "STUDENT" &&
+            (
+            <>
+            
             <Typography variant="h5" gutterBottom style={{ marginTop: '6em' }}>
-                2) Étudiants
+                 Étudiants
             </Typography>
             <Card style={{ marginTop: '2em' }}>
                 <CardContent>
@@ -73,8 +83,11 @@ const StatsPage = () => {
                     <ClassementsByMatiere />
                 </CardContent>
             </Card>
+            </>
+
+            )}
             <Typography variant="h5" gutterBottom style={{ marginTop: '6em' }}>
-                2) Notes
+                 Notes
             </Typography>
             <Card style={{ marginTop: '2em' }}>
                 <CardContent>

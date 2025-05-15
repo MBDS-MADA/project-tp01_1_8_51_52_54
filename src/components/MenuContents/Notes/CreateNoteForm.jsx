@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './CreateNoteForm.css';
-
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 const NoteForm = () => {
+  const user=JSON.parse(localStorage.getItem('user'))
   const studentRef = useRef();
   const courseRef = useRef();
   const gradeRef = useRef();
@@ -13,12 +14,22 @@ const NoteForm = () => {
   const [success, setSuccess] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8010/api/students")
+    fetch(`${BACKEND_URL}/students`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setStudents(data))
       .catch(err => console.error("Erreur chargement étudiants :", err));
 
-    fetch("http://localhost:8010/api/courses")
+    fetch(`${BACKEND_URL}/courses`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setCourses(data))
       .catch(err => console.error("Erreur chargement cours :", err));
@@ -49,10 +60,13 @@ const NoteForm = () => {
     if (!validate(data)) return;
 
     try {
-      const res = await fetch("http://localhost:8010/api/grades", {
+      // console.log({ authorization:`Bearer ${user.token}` });
+      
+      const res = await fetch(`${BACKEND_URL}/grades`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        headers: { "Content-Type": "application/json" , authorization:`Bearer ${user.token}` },
+        body: JSON.stringify(data),
+       
       });
 
       if (!res.ok) throw new Error("Erreur lors de l'envoi");

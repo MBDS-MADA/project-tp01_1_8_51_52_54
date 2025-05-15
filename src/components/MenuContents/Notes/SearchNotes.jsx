@@ -1,6 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 
 function SearchNotes({ courseId,studentId,noteMin,noteMax,handleChange,courses,students }) {
+    const user=JSON.parse(localStorage.getItem('user'))
     const handleKeyDown = (event) => {
         // Bloque l'entrée de caractères non numériques (autre que Backspace, etc.)
         if (/[^0-9\.]/.test(event.key) && event.key !== 'Backspace' && event.key !== 'Delete' && event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') {
@@ -29,7 +30,9 @@ function SearchNotes({ courseId,studentId,noteMin,noteMax,handleChange,courses,s
           
         </Select>
       </FormControl>
-      <FormControl>
+      {user.role != "STUDENT" &&
+      (
+        <FormControl>
         <InputLabel id="demo-simple-select-label">Etudiants</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -47,6 +50,8 @@ function SearchNotes({ courseId,studentId,noteMin,noteMax,handleChange,courses,s
           
         </Select>
       </FormControl>
+      )}
+     
       <TextField
           
           label="Note minimum"

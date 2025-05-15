@@ -12,6 +12,7 @@ import {
 import users from '../../data/users.json';
 import { Link } from 'react-router-dom';
 
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 const Login = () => {
   localStorage.removeItem('user');
 
@@ -20,22 +21,36 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    const foundUser = users.find(
-      (user) => user.username === username && user.password === password
-    );
+    try {
+        const response = await fetch(`${BACKEND_URL}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
 
-    if (foundUser) {
-      const userconnected = { ...foundUser };
-      delete userconnected.password;
-      localStorage.setItem('user', JSON.stringify(userconnected));
-      navigate('/app/index');
-    } else {
-      setError("Nom d'utilisateur ou mot de passe incorrect !");
+        const data = await response.json();
+
+        if (response.ok) {
+            const userconnected = { ...data };
+            localStorage.setItem('user', JSON.stringify(userconnected));
+            navigate('/app/index');
+        } else {
+            setError(data.message || "Erreur lors de la connexion.");
+        }
+    } catch (error) {
+        console.error('Erreur de connexion :', error);
+        setError("Erreur serveur.");
     }
-  };
+};
+
 
   return (
     <Box
