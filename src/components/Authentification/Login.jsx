@@ -9,6 +9,9 @@ import {
   Box,
   Stack
 } from '@mui/material';
+import users from '../../data/users.json';
+import { Link } from 'react-router-dom';
+
 const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 const Login = () => {
   localStorage.removeItem('user');
@@ -99,6 +102,12 @@ const Login = () => {
             </Button>
           </Stack>
         </form>
+
+        <Link to={`/SignInSide`} style={{ textDecoration: 'none' }}>
+                        <Button variant="contained" color="success">
+                          SingInSide
+                        </Button>
+                      </Link>
       </Paper>
     </Box>
   );
