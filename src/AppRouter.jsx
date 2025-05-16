@@ -11,6 +11,7 @@ import ComponentUpdateEtudiant from './components/MenuContents/Etudiants/Compone
 import ContentNotes from './components/MenuContents/Notes/ContentNotes';
 import NoteForm from './components/MenuContents/Notes/CreateNoteForm';
 import Index from './components/index';
+import Registration from './components/Authentification/Registration';
 
 
 const AppRouter = () => {
@@ -18,6 +19,8 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+
+        <Route path="/register" element={<Registration />} />
 
         <Route path="/app" element={<App />}>
 

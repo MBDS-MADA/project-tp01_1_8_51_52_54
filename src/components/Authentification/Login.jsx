@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   TextField,
   Button,
@@ -97,6 +97,8 @@ const Login = () => {
             >
               Se connecter
             </Button>
+
+            <Link to="/register">Etes vous étudiant? S'inscrire.</Link>
           </Stack>
         </form>
       </Paper>
