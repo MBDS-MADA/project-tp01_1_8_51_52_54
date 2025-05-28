@@ -14,6 +14,7 @@ import Index from './components/index';
 import Registration from './components/Authentification/Registration';
 // import SignIn from './components/Authentification/sign-in/SignIn';
 import SignInSide from './components/Authentification/sign-in-side/SignInSide';
+import SignUp from './components/Authentification/sign-up/SignUp';
 import Blog from './components/blog/Blog';
 
 const AppRouter = () => {
@@ -24,11 +25,13 @@ const AppRouter = () => {
         
         {/* <Route path="/blog" element={<Blog />} /> */}
 
-        <Route path="/register" element={<Registration />} />
+        <Route path="/register" element={<SignUp />} />
+
+        {/* <Route path="/register" element={<Registration />} /> */}
 
         <Route path="/app" element={<App />}>
 
-{/* 
+        {/* 
         <Route path="blog" element={
             <ProtectedRoute allowedRoles={["admin", "user"]}>
               <Blog />

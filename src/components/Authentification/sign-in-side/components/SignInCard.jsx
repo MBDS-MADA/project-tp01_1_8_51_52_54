@@ -212,7 +212,7 @@ export default function SignInCard() {
           Sign in
         </Button>
         <Typography sx={{ textAlign: 'center' }}>
-          Don&apos;t have an account?{' '}
+          Etes vous étudiant?{' '}
           <span>
             {/* <Link
               href="/material-ui/getting-started/templates/sign-in/"
@@ -221,7 +221,7 @@ export default function SignInCard() {
             >
               Sign up
             </Link> */}
-            <Link to="/register">Etes vous étudiant? S'inscrire.</Link>
+            <Link to="/register"> S'inscrire.</Link>
           </span>
         </Typography>
      </Box>

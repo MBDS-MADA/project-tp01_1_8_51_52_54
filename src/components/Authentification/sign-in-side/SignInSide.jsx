@@ -10,10 +10,6 @@ import Content from './components/Content';
 
 export default function SignInSide(props) {
 
-
-
-
-
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
