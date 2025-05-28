@@ -9,10 +9,14 @@ import {
   Box,
   Stack
 } from '@mui/material';
+<<<<<<< HEAD
 import users from '../../data/users.json';
 import { Link } from 'react-router-dom';
 
 const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
+=======
+
+>>>>>>> parent of 7f2b3fa (docker update)
 const Login = () => {
   localStorage.removeItem('user');
 
@@ -25,7 +29,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-        const response = await fetch(`${BACKEND_URL}/login`, {
+        const response = await fetch('http://localhost:8010/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
