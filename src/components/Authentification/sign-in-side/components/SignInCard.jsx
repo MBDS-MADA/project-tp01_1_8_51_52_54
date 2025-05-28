@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 //
 
+
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -95,28 +96,43 @@ export default function SignInCard() {
 
 
 //code Finaritra integration
- localStorage.removeItem('user');
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    const foundUser = users.find(
-      (user) => user.username === username && user.password === password
-    );
-
-    if (foundUser) {
-      const userconnected = { ...foundUser };
-      delete userconnected.password;
-      localStorage.setItem('user', JSON.stringify(userconnected));
-      navigate('/app/index');
-    } else {
-      setError("Nom d'utilisateur ou mot de passe incorrect !");
-    }
+    localStorage.removeItem('user');
+  
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+  
+    const handleLogin = async (e) => {
+      e.preventDefault();
+  
+      try {
+          const response = await fetch(`${BACKEND_URL}/login`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  username: username,
+                  password: password
+              })
+          });
+  
+          const data = await response.json();
+  
+          if (response.ok) {
+              const userconnected = { ...data };
+              localStorage.setItem('user', JSON.stringify(userconnected));
+              navigate('/app/index');
+          } else {
+              setError(data.message || "Erreur lors de la connexion.");
+          }
+      } catch (error) {
+          console.error('Erreur de connexion :', error);
+          setError("Erreur serveur.");
+      }
   };
 //
 
@@ -127,7 +143,7 @@ export default function SignInCard() {
 
     <Card variant="outlined">
 
-{error && (
+      {error && (
           <Alert severity="error" sx={{ mb: 2 }}>
             {error}
           </Alert>
