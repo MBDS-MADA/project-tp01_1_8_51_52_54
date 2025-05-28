@@ -15,7 +15,6 @@ import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 
 //code Finaritra integration 
 import { useNavigate } from 'react-router-dom';
-import users from '../../../../data/users.json';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 //
@@ -135,9 +134,6 @@ const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
       }
   };
 //
-
-
-
 
   return (
 
