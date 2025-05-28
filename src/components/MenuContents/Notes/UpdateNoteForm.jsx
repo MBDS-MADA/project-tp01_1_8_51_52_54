@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './CreateNoteForm.css';
-
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 function UpdateNoteForm({ noteToEdit, onUpdateSuccess }) {
   const [students, setStudents] = useState([]);
   const [student, setStudent] = useState('');
@@ -8,10 +8,15 @@ function UpdateNoteForm({ noteToEdit, onUpdateSuccess }) {
   const [date, setDate] = useState('');
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(null);
+  const userconnected = JSON.parse(localStorage.getItem("user"));
 
   async function fetchStudentList() {
     try {
-      const response = await fetch('http://localhost:8010/api/students');
+      const response = await fetch(`${BACKEND_URL}/students`, {
+        headers: {
+          authorization: `Bearer ${userconnected.token}`
+        }
+      });
       const data = await response.json();
       setStudents(data);
     } catch (error) {
@@ -59,9 +64,12 @@ function UpdateNoteForm({ noteToEdit, onUpdateSuccess }) {
     };
 
     try {
-      const response = await fetch(`http://localhost:8010/api/grades/${noteToEdit._id}`, {
+      const response = await fetch(`${BACKEND_URL}/grades/${noteToEdit._id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${userconnected.token}`
+        },
         body: JSON.stringify(body),
       });
 

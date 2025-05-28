@@ -3,19 +3,30 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid,
   Tooltip, ResponsiveContainer
 } from 'recharts';
-
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 const MoyenneByCourseChart = () => {
+  const user=JSON.parse(localStorage.getItem('user'))
   const [notes, setNotes] = useState([]);
   const [courses, setCourses] = useState([]);
 
   // Charger les données depuis les APIs
   useEffect(() => {
-    fetch("http://localhost:8010/api/grades")
+    fetch(`${BACKEND_URL}/grades`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setNotes(data))
       .catch(err => console.error("Erreur chargement notes :", err));
 
-    fetch("http://localhost:8010/api/courses")
+    fetch(`${BACKEND_URL}/courses`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setCourses(data))
       .catch(err => console.error("Erreur chargement cours :", err));

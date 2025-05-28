@@ -4,21 +4,32 @@ import {
   TableHead, TableRow, FormControl, InputLabel, Select, MenuItem, TablePagination
 } from '@mui/material';
 
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 const ClassementsByMatiere = () => {
   const [notes, setNotes] = useState([]);
   const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState('');
   const [page, setPage] = useState(0);
   const rowsPerPage = 5;
-
+  const user=JSON.parse(localStorage.getItem('user'))
   // Charger les données depuis l'API
   useEffect(() => {
-    fetch("http://localhost:8010/api/grades")
+    fetch(`${BACKEND_URL}/grades`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setNotes(data))
       .catch(err => console.error("Erreur chargement notes:", err));
 
-    fetch("http://localhost:8010/api/courses")
+    fetch(`${BACKEND_URL}/courses`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setCourses(data))
       .catch(err => console.error("Erreur chargement cours:", err));

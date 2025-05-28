@@ -7,8 +7,9 @@ import {
 } from '@mui/material';
 
 const getMonth = (dateStr) => dateStr.slice(0, 7);
-
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 const NotesParMoisChart = () => {
+  const user=JSON.parse(localStorage.getItem("user"))
   const [notes, setNotes] = useState([]);
   const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);
@@ -17,17 +18,32 @@ const NotesParMoisChart = () => {
 
   // 📡 Charger les données depuis les APIs
   useEffect(() => {
-    fetch("http://localhost:8010/api/grades")
+    fetch(`${BACKEND_URL}/grades`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setNotes(data))
       .catch(err => console.error("Erreur chargement notes:", err));
 
-    fetch("http://localhost:8010/api/students")
+    fetch(`${BACKEND_URL}/students`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setStudents(data))
       .catch(err => console.error("Erreur chargement étudiants:", err));
 
-    fetch("http://localhost:8010/api/courses")
+    fetch(`${BACKEND_URL}/courses`,{
+      method:"GET",
+      headers:{
+        authorization:`Bearer ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => setCourses(data))
       .catch(err => console.error("Erreur chargement cours:", err));
@@ -80,6 +96,9 @@ const NotesParMoisChart = () => {
             </Select>
           </FormControl>
         </Grid>
+        {user.role !=="STUDENT" &&
+        (
+
         <Grid item xs={12} sm={6}>
           <FormControl fullWidth>
             <InputLabel>Étudiant</InputLabel>
@@ -97,6 +116,7 @@ const NotesParMoisChart = () => {
             </Select>
           </FormControl>
         </Grid>
+        )}
       </Grid>
 
       {dataParMois.length === 0 ? (
