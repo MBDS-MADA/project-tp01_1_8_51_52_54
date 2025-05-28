@@ -46,15 +46,15 @@ export default function AppAppBar() {
 //code MenuOpt
 const user = JSON.parse(localStorage.getItem("user"));
     const menu_liste = [
-        { text: "Notes", path: "/app/notes", roles: ["admin","user"] },
-        { text: "Créer Note", path: "/app/notes/add", roles: ["admin"] },
-        { text: "Etudiants", path: "/app/etudiants", roles: ["admin","user"] },
-        { text: "Matières", path: "/app/matieres", roles: ["admin","user"] },
-        { text: "Statistique", path: "/app/console", roles: ["admin","user"] },
-        { text: "A propos", path: "/app/apropos", roles: ["admin","user"] },
-        // { text: "blog", path: "/app/blog", roles: ["admin","user"] },
-        // { text: "Deconnexion", path: "/", roles: ["admin","user"] }
+        { text: "Notes", path: "/app/notes", roles: ["ADMIN","SCOLARITE","STUDENT"] },
+       
+        { text: "Etudiants", path: "/app/etudiants", roles: ["ADMIN","SCOLARITE"] },
+        { text: "Matières", path: "/app/matieres", roles: ["ADMIN","SCOLARITE"] },
+        { text: "Statistique", path: "/app/console", roles: ["ADMIN","SCOLARITE","STUDENT"] },
+        { text: "A propos", path: "/app/apropos", roles: ["ADMIN","SCOLARITE"] },
+        { text: "Deconnexion", path: "/", roles: ["ADMIN","SCOLARITE","STUDENT"] }
       ]
+   
    
 
   return (
@@ -106,7 +106,7 @@ const user = JSON.parse(localStorage.getItem("user"));
               alignItems: 'center',
             }}
           >
-            <Link to="/">
+            <Link to="/" >
             <Button color="primary" variant="contained" size="small">
               Deconnexion
             </Button>
