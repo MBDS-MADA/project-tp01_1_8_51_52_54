@@ -149,7 +149,7 @@ const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
     <form onSubmit={handleLogin}>
       
       <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-        <SitemarkIcon />
+        {/* <SitemarkIcon /> */}
       </Box>
       <Typography
         component="h1"

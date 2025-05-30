@@ -20,6 +20,7 @@ import { styled } from '@mui/material/styles';
 import AppTheme from './shared-theme/AppTheme';
 import ColorModeSelect from './shared-theme/ColorModeSelect';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './components/CustomIcons';
+import SignInButton from '../sign-in-side/components/SignInButton';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -215,14 +216,15 @@ export default function SignUp(props) {
           </Divider>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Button
+            {/* <Button
               fullWidth
               variant="outlined"
               onClick={() => alert('Sign up with Google')}
               startIcon={<GoogleIcon />}
             >
               S’inscrire avec Google
-            </Button>
+            </Button> */}
+             <SignInButton/>
             <Typography sx={{ textAlign: 'center' }}>
               Vous avez déjà un compte ?{' '}
               <Link to="/">

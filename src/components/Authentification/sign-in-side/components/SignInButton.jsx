@@ -43,6 +43,7 @@ const SignInButton = () => {
         } 
     
         if (!res.ok) {
+          alert(res.status +" : "+ data.message);
       throw new Error(`Erreur HTTP ${res.status}`);
     }
 
