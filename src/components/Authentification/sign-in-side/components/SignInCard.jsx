@@ -17,6 +17,7 @@ import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import SignInButton from './SignInButton';
 //
 
 
@@ -240,16 +241,10 @@ const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 
   </form>
       <Divider>or</Divider>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        <Button
-          fullWidth
-          variant="outlined"
-          onClick={() => alert('Sign in with Google')}
-          startIcon={<GoogleIcon />}
-        >
-          Sign in with Google
-        </Button>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}> 
+        <SignInButton/>
       </Box>
+
     </Card>
   );
 }
