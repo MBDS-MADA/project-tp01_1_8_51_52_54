@@ -43,7 +43,7 @@ export default function Content() {
       <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
         {/* <SitemarkIcon /> */}
         <img 
-            src="/src/assets/logo-rbg.png"
+            src="/assets/logo-rbg.png"
             alt="Logo de la formation" 
             id="formation-logo"
           />

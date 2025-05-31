@@ -137,7 +137,7 @@ export default function SignUp(props) {
           }}
         >
           <img
-            src="/src/assets/logo-rbg.png"
+            src="/assets/logo-rbg.png"
             alt="Logo de la formation"
             id="formation-logo"
             style={{ maxWidth: '150px', height: 'auto' }} // optionnel : ajuste la taille

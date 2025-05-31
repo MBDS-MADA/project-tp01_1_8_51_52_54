@@ -74,7 +74,7 @@ const user = JSON.parse(localStorage.getItem("user"));
             {/* <Sitemark /> */}
             <Link to="/app/index">
             <img
-                src="/src/assets/logo-rbg.png"
+                src="/assets/logo-rbg.png"
                 alt="Logo de la formation"
                 id="formation-logo"
                 style={{ width: '150px', height: '40px' }}
