@@ -25,6 +25,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 function ContentMatieres() {
   const userconnected = JSON.parse(localStorage.getItem("user"));
   const isAdmin = userconnected?.role === "ADMIN";
+  const isScolarite = userconnected?.role === "SCOLARITE";
 
   const [courses, setCourses] = useState([]);
   const [filteredCourses, setFilteredCourses] = useState([]);
@@ -215,7 +216,7 @@ function ContentMatieres() {
     <div style={{ padding: "1rem" }}>
       <h2>Gestion des Matières</h2>
 
-      {isAdmin && (
+      {(isAdmin||isScolarite) && (
         <div
           style={{
             display: "flex",
@@ -245,7 +246,7 @@ function ContentMatieres() {
             <TableRow>
               <TableHeadSorting headCells={headCells} onRequestSort={handleRequestSort} order={order}
                 orderBy={orderBy} />
-              {isAdmin && <TableCell align="right">Actions</TableCell>}
+              {(isAdmin||isScolarite) && <TableCell align="right">Actions</TableCell>}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -263,7 +264,7 @@ function ContentMatieres() {
                     course.name
                   )}
                 </TableCell>
-                {isAdmin && (
+                {(isAdmin||isScolarite) && (
                   <TableCell align="right">
                     {editingId === course._id ? (
                       <Button size="small" onClick={saveEdit}>
