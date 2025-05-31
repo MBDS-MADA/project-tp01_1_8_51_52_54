@@ -30,7 +30,7 @@ function Index() {
         <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 10, sm: 10, md: 12 }}>
         
-            <Grid key={1} size={{ xs: 2, sm: 5, md: 12 }}>
+            <Grid size={{ xs: 2, sm: 5, md: 12 }}>
                 <Item style={{ backgroundColor: '#d0f8ca' }} >
                     <h2 style={{ color: '#000000' }}>📘 Description</h2>
                     <p>
@@ -40,7 +40,7 @@ function Index() {
                 </Item>
             </Grid>
 
-            <Grid key={1} size={{ xs: 2, sm: 5, md: 12 }}>
+            <Grid size={{ xs: 2, sm: 5, md: 12 }}>
                 <Item style={{ backgroundColor: '#caf7f8' }}>
                     {/* <h2 style={{ color: '#000000', marginTop: '30px' }}>Fonctionnalités</h2> */}
                     <h3 style={{ marginTop: '20px', color: '#000000' }}>🧩 Module 0 – Fonctionnalités de base</h3>
@@ -51,7 +51,7 @@ function Index() {
                 </Item>
             </Grid>
 
-            <Grid key={1} size={{ xs: 2, sm: 4, md: 12 }}>
+            <Grid  size={{ xs: 2, sm: 4, md: 12 }}>
                 <Item style={{ backgroundColor: '#d0f8ca' }}>
                 <h3 style={{ marginTop: '20px', color: '#000000' }}>🔐 Module 1 – Authentification</h3>
                 <ul>
@@ -65,7 +65,7 @@ function Index() {
 
                 </Item>
             </Grid>
-            <Grid key={1} size={{ xs: 2, sm: 5, md: 12 }}>
+            <Grid  size={{ xs: 2, sm: 5, md: 12 }}>
                 <Item style={{ backgroundColor: '#caf7f8' }}>
                 <h3 style={{ marginTop: '20px', color: '#000000' }}>📊 Module 2 – Statistiques améliorées</h3>
                     <ul>
@@ -76,7 +76,7 @@ function Index() {
 
                 </Item>
             </Grid>
-            <Grid key={1} size={{ xs: 2, sm: 5, md: 12 }}>
+            <Grid size={{ xs: 2, sm: 5, md: 12 }}>
                 <Item style={{ backgroundColor: '#d0f8ca' }}>
                 <h3 style={{ marginTop: '20px', color: '#000000' }}>📦 Module 3 – Containerisation & déploiement</h3>
                 <ul>
@@ -85,7 +85,7 @@ function Index() {
                 </ul>
                 </Item>
             </Grid>
-            <Grid key={1} size={{ xs: 2, sm: 5, md: 12 }}>
+            <Grid size={{ xs: 2, sm: 5, md: 12 }}>
                 <Item style={{ backgroundColor: '#caf7f8' }}>
                 <h3 style={{ marginTop: '20px', color: '#000000' }}>⭐ Bonus</h3>
                 <ul>
