@@ -158,20 +158,20 @@ const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
         Sign in
       </Typography>
       <Box
-        component="form"
+        component="div"
         onSubmit={handleSubmit}
         noValidate
         sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
       >
         <FormControl>
-          <FormLabel htmlFor="email">Email</FormLabel>
+          <FormLabel htmlFor="email">Nom d'utilisateur </FormLabel>
           <TextField
             error={emailError}
             helperText={emailErrorMessage}
             id="email"
             // type="email"
             // name="email"
-            placeholder="your@email.com"
+            placeholder="jessica.miller"
             // autoComplete="email"
             autoFocus
             required
@@ -192,7 +192,7 @@ const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
               variant="body2"
               sx={{ alignSelf: 'baseline' }}
             >
-              Forgot your password?
+              mot de passe oublié ?
             </Link>
            </Box>
           <TextField

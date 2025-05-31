@@ -16,12 +16,15 @@ import Registration from './components/Authentification/Registration';
 import SignInSide from './components/Authentification/sign-in-side/SignInSide';
 import SignUp from './components/Authentification/sign-up/SignUp';
 import Blog from './components/blog/Blog';
+import ResetPassword from './components/Authentification/sign-in-side/components/ResetPassword';
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<SignInSide />} />
+
+        <Route path="/reset-password" element={<ResetPassword />} />
         
         {/* <Route path="/blog" element={<Blog />} /> */}
 
