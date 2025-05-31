@@ -43,7 +43,7 @@ Ce projet a été développé dans le cadre du MBDS par l'équipe suivante :
 | Rôle       | Nom d'utilisateur | Mot de passe   |
 |------------|-------------------|----------------|
 | Admin      | `admin`           | `admin`        |
-| Scolarité  | `admin`           | `admin`        |
+| Scolarité  | `user`            | `user`         |
 | Étudiant   | `kevin.green`     | `kevin.green`  |
 
 ## Fonctionnalités DevOps
