@@ -16,7 +16,7 @@ function ContentPropos() {
       <p>8 ANDRIANTAHIANA Vatosoa Finaritra</p>
       <p>51 RAVELOMANANTSOA Iaina Erico </p>
       <p>52 RAVOAHANGILALAO Kaloina Mélodie </p>
-      <p>54 RAZAFIMAHATRATRA Steeve Peraly </p>
+      <p>53 RAZAFIMAHATRATRA Steeve Peraly </p>
 
     </div>
     </div>
