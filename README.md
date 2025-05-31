@@ -10,7 +10,7 @@ Ce projet a été développé dans le cadre du MBDS par l'équipe suivante :
 - **1** ANDRIAMAMONJY Fitia Arivony  
 - **8** ANDRIANTAHIANA Vatosoa Finaritra  
 - **51** RAVELOMANANTSOA Iaina Erico  
-- **52** RAVOAHANGILALAO Kaloina Mélodie  
+- **52** RAVOAHANGILALAO Anjaniaina Kaloina Mélodie  
 - **53** RAZAFIMAHATRATRA Steeve Peraly  
 
 ## Liens importants
