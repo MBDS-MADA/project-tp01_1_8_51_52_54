@@ -199,12 +199,7 @@ export default function SignUp(props) {
                 error={Boolean(errors.password)}
                 helperText={errors.password}
               />
-            </FormControl>
-
-            <FormControlLabel
-              control={<Checkbox value="allowExtraEmails" color="primary" />}
-              label="Je souhaite recevoir des mises à jour par email."
-            />
+            </FormControl>            
 
             <Button type="submit" fullWidth variant="contained">
               S'inscrire
@@ -215,7 +210,7 @@ export default function SignUp(props) {
             <Typography sx={{ color: 'text.secondary' }}>ou</Typography>
           </Divider>
 
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column'}}>
             {/* <Button
               fullWidth
               variant="outlined"
@@ -224,7 +219,6 @@ export default function SignUp(props) {
             >
               S’inscrire avec Google
             </Button> */}
-             <SignInButton/>
             <Typography sx={{ textAlign: 'center' }}>
               Vous avez déjà un compte ?{' '}
               <Link to="/">

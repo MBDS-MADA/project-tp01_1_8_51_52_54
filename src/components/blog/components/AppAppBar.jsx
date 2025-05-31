@@ -90,7 +90,7 @@ const user = JSON.parse(localStorage.getItem("user"));
                             }
               
                             return (
-                              <li key={menu.text} className="mr-4">
+                              <li key={menu.text} className={`mr-4 ${menu.text === "Deconnexion" ? "hide-md" : ""}`}>
                                 <MenuItem text={menu.text} path={menu.path} />
                               </li>
                             );

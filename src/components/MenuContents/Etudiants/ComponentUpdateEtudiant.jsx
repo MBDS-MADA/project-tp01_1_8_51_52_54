@@ -39,12 +39,12 @@ function EtudiantForm({ form, handleChange, handleSubmit }) {
       maxWidth: '600px',
       margin: '40px auto',
       padding: '30px',
-      backgroundColor: '#f4f6f8',
+      // backgroundColor: '#f4f6f8',
       borderRadius: '12px',
-      boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+      boxShadow: '0 4px 8px rgba(255, 255, 255, 0.34)'
     }}>
       <form onSubmit={handleSubmit}>
-        <h2 style={{ textAlign: 'center', color: '#000205' }}>Modifier un Étudiant</h2>
+        <h2 style={{ textAlign: 'center'}}>Modifier un Étudiant</h2>
 
         {["firstName", "lastName"].map((field) => (
           <div key={field} style={{ marginBottom: '15px' }}>
@@ -62,8 +62,8 @@ function EtudiantForm({ form, handleChange, handleSubmit }) {
                 padding: '10px',
                 borderRadius: '6px',
                 border: '1px solid #ccc',
-                backgroundColor: '#e7effc',
-                color: '#000'
+                // backgroundColor: '#e7effc',
+                // color: '#000'
               }}
             />
           </div>

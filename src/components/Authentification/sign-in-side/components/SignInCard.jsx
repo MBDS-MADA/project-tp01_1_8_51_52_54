@@ -156,7 +156,7 @@ const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
         variant="h4"
         sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
       >
-        Sign in
+        S'identifier
       </Typography>
       <Box
         component="div"
@@ -213,16 +213,13 @@ const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
               onChange={(e) => setPassword(e.target.value)}
           />
         </FormControl>
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" />}
-          label="Remember me"
-        />
+      
         <ForgotPassword open={open} handleClose={handleClose} />
         <Button type="submit" fullWidth 
         variant="contained" 
         onClick={handleLogin}
         >
-          Sign in
+           Se connecter
         </Button>
         <Typography sx={{ textAlign: 'center' }}>
           Etes vous étudiant?{' '}
@@ -240,7 +237,7 @@ const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
      </Box>
 
   </form>
-      <Divider>or</Divider>
+      <Divider>ou</Divider>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}> 
         <SignInButton/>
       </Box>

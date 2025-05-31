@@ -97,19 +97,21 @@ function ComponentAddEtudiant() {
       maxWidth: '600px',
       margin: '40px auto',
       padding: '30px',
-      backgroundColor: '#f4f6f8',
+      // backgroundColor: '#f4f6f8',
       borderRadius: '12px',
-      boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+      boxShadow: '0 4px 8px rgba(255, 255, 255, 0.34)'
     }}>
       <form onSubmit={handleSubmit}>
-        <h2 style={{ textAlign: 'center', color: '#000205' }}>Ajouter un Étudiant</h2>
+        <h2 style={{ textAlign: 'center' }}>Ajouter un Étudiant</h2>
 
         {["firstName", "lastName"].map((field) => (
           <div key={field} style={{ marginBottom: '15px' }}>
             <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '5px' }}>
               {field}
             </label>
-            <input type="text" name={field} value={form[field]} onChange={handleChange} required style={{   width: '100%',   padding: '10px',   borderRadius: '6px',   border: '1px solid #ccc',   backgroundColor: '#e7effc',   color: '#000' }}
+            <input type="text" name={field} value={form[field]} onChange={handleChange} required style={{   width: '100%',   padding: '10px',   borderRadius: '6px',   
+            // border: '1px solid #ccc',   backgroundColor: '#e7effc',   color: '#000'
+           }}
             />
           </div>
         ))}
@@ -308,7 +310,7 @@ function ContentEtudiantsDefault() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <Link to={`/app/update-etudiant/${student._id}`} style={{ textDecoration: 'none' }}>
                         <Button variant="contained" color="success">
-                          Update
+                          Mettre à jour
                         </Button>
                       </Link>
 
@@ -317,7 +319,7 @@ function ContentEtudiantsDefault() {
                         color="error"
                         onClick={() => deleteEtudiant(student._id)}
                       >
-                        Delete
+                        Supprimer
                       </Button>
 
                       <BulletinNote etudiant={student} />

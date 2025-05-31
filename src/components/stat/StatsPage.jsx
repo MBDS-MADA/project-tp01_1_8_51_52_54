@@ -78,8 +78,8 @@ const StatsPage = () => {
                     <ClassementEtudiants />
                 </CardContent>
             </Card>
-            <Card>
-                <CardContent style={{ marginTop: '2em' }}>
+            <Card style={{ marginTop: '2em' }}>
+                <CardContent>
                     <ClassementsByMatiere />
                 </CardContent>
             </Card>
